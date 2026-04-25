@@ -4,12 +4,13 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from tools import web_search, scrap_url
 from dotenv import load_dotenv
+from langchain_groq import ChatGroq  # ← replace ChatOpenAI import
 import os
 from rich import print
 load_dotenv()
 
 # model setup
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, api_key=os.getenv("OPENAI_API_KEY"))
+llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0, api_key=os.getenv("GROQ_API_KEY"))
 
 # 1st agent
 def build_search_agent():
